@@ -1,0 +1,131 @@
+<section class="mx-auto w-full max-w-screen-sm px-4">
+  <form class="space-y-4 md:space-y-6" [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label
+        for="nombre"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Nombre</label
+      >
+      <input
+        type="text"
+        name="nombre"
+        id="nombre"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="nombre"
+      />
+    </div>
+
+    <div>
+      <label
+        for="marca"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Marca</label
+      >
+      <input
+        type="text"
+        name="marca"
+        id="marca"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="marca"
+      />
+    </div>
+
+    <div>
+      <label
+        for="modelo"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Modelo</label
+      >
+      <input
+        type="text"
+        name="modelo"
+        id="modelo"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="modelo"
+      />
+    </div>
+
+    <div>
+      <label
+        for="stock"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Stock</label
+      >
+      <input
+        type="number"
+        name="stock"
+        id="stock"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="stock"
+      />
+    </div>
+
+    <div>
+      <label
+        for="sku"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Sku</label
+      >
+      <input
+        type="text"
+        name="sku"
+        id="sku"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="sku"
+      />
+    </div>
+
+    <div>
+      <label
+        for="precio"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Precio</label
+      >
+      <input
+        type="number"
+        name="precio"
+        id="precio"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="precio"
+      />
+    </div>
+
+    <div>
+      <label
+        for="imagen"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Imagen</label
+      >
+      <input
+        type="text"
+        name="imagen"
+        id="imagen"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="imagen"
+      />
+    </div>
+
+    <div>
+      <label
+        for="descripcion"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Descripcion</label
+      >
+      <input
+        type="text"
+        name="descripcion"
+        id="descripcion"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="descripcion"
+      />
+    </div>
+
+    <button
+      [disabled]="loading()"
+      type="submit"
+      class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+    >
+      {{ loading() ? "Guardando..." : "Guardar" }}
+    </button>
+  </form>
+</section>
