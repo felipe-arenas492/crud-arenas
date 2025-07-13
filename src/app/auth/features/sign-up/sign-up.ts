@@ -9,7 +9,7 @@ import { hasEmailError, isRequired } from '../../utils/validators';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
 import { Router, RouterLink } from '@angular/router';
-import { GoogleButtonComponent } from '../../ui/google-button/google-button';
+// import { GoogleButtonComponent } from '../../ui/google-button/google-button';
 
 interface FormSignUp {
   email: FormControl<string | null>;
@@ -19,7 +19,7 @@ interface FormSignUp {
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './sign-up.html',
 })
 export default class SignUpComponent {

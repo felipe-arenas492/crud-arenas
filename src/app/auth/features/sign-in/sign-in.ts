@@ -9,7 +9,7 @@ import { Router, RouterLink } from '@angular/router';
 import { toast } from 'ngx-sonner';
 import { AuthService } from '../../data-access/auth.service';
 import { isRequired, hasEmailError } from '../../utils/validators';
-import { GoogleButtonComponent } from '../../ui/google-button/google-button';
+// import { GoogleButtonComponent } from '../../ui/google-button/google-button';
 
 export interface FormSignIn {
   email: FormControl<string | null>;
@@ -19,7 +19,7 @@ export interface FormSignIn {
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './sign-in.html',
   styles: ``,
 })

@@ -3,13 +3,24 @@
     routerLink="/products/new"
     class="cursor-pointer mb-8 inline-block focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
   >
-    Nueva tarea
+    
   </a> -->
+  <input
+    #searchInput
+    type="text"
+    placeholder="Buscar producto"
+    class="mb-8 w-full p-2 border rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    (input)="searchText.set(searchInput.value)"
+  />
   @if(productService.loading()) {
   <p>Cargando...</p>
 
   } @else {
-  <app-table [products]="productService.getProducts()" />
+
+  <app-table
+    [searchText]="searchText()"
+    [products]="productService.getProducts()"
+  />
 
   }
 </section>
