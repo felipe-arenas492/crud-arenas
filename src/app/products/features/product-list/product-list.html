@@ -17,10 +17,6 @@
 
   } @else {
 
-  <app-table
-    [searchText]="searchText()"
-    [products]="productService.getProducts()"
-  />
-
+  <app-table [searchText]="searchText()" />
   }
 </section>

@@ -7,6 +7,7 @@ import {
 } from '../../data-access/product.service';
 import { toast } from 'ngx-sonner';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-form',
@@ -20,10 +21,11 @@ export default class ProductForm {
   private _formBuilder = inject(FormBuilder);
   private _productService = inject(ProductService);
   private _router = inject(Router);
+  private _route = inject(ActivatedRoute);
 
   loading = signal(false);
-
-  idProduct = input<string>();
+  idProduct = signal<string | null>(null);
+  //idProduct = input<string>();
 
   form = this._formBuilder.group({
     nombre: this._formBuilder.control('', Validators.required),
@@ -37,9 +39,17 @@ export default class ProductForm {
   });
 
   constructor() {
-    effect(() => {
+    /*effect(() => {
       const id = this.idProduct();
       if (id) {
+        this.getProduct(id);
+      }
+    });*/
+
+    this._route.paramMap.subscribe((params) => {
+      const id = params.get('idProduct');
+      if (id) {
+        this.idProduct.set(id);
         this.getProduct(id);
       }
     });
@@ -48,9 +58,10 @@ export default class ProductForm {
   async submit() {
     if (this.form.invalid) return;
 
+    this.loading.set(true);
     try {
-      console.log('entro a abel');
-      this.loading.set(true);
+      // console.log('entro a abel');
+      // this.loading.set(true);
       const { nombre, marca, modelo, imagen, stock, precio, sku, descripcion } =
         this.form.value;
       const product: ProductCreate = {
@@ -72,10 +83,10 @@ export default class ProductForm {
         await this._productService.create(product);
       }
 
-      toast.success(`Product ${id ? 'actualizada' : 'creada'}  correctamente.`);
+      toast.success(`Product ${id ? 'actualizado' : 'creado'}  correctamente.`);
       this._router.navigateByUrl('/products');
     } catch (error) {
-      toast.success('Ocurrio un problema.');
+      toast.success('Ocurrio un problema al guardar.');
     } finally {
       this.loading.set(false);
     }

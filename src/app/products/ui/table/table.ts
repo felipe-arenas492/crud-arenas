@@ -1,7 +1,6 @@
-import { Component, input, computed, signal } from '@angular/core';
-import { Product } from '../../data-access/product.service';
+import { Component, input, computed, signal, inject } from '@angular/core';
+import { Product, ProductService } from '../../data-access/product.service';
 import { RouterLink } from '@angular/router';
-import { combineLatest, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -10,10 +9,15 @@ import { combineLatest, map, Observable } from 'rxjs';
   templateUrl: './table.html',
 })
 export class TableComponent {
-  products = input.required<Product[]>();
+  private productService = inject(ProductService);
+
+  // products = input.required<Product[]>();
   searchText = input.required<string>({});
 
-  newProducts = signal<Product[]>([]);
+  // newProducts = signal<Product[]>([]);
+
+  products = this.productService.getProducts;
+
   // Computed signal que filtra los productos basado en el texto de búsqueda
   filteredProducts = computed(() => {
     const products = this.products();
@@ -31,4 +35,19 @@ export class TableComponent {
         product.marca.toLowerCase().includes(search)
     );
   });
+
+  async deleteProduct(id: string) {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+      try {
+        await this.productService.deleteProduct(id);
+
+        // Opcional: filtra los productos localmente después de borrar
+        // const updated = this.products().filter((p) => p.id !== id);
+        // this.newProducts.set(updated); // Si usas esto como fuente de verdad
+      } catch (error) {
+        console.error('Error al eliminar producto:', error);
+        alert('No se pudo eliminar el producto.');
+      }
+    }
+  }
 }

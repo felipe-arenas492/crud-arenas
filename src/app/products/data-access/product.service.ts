@@ -8,6 +8,7 @@ import {
   doc,
   getDoc,
   updateDoc,
+  deleteDoc,
   query,
   where,
 } from '@angular/fire/firestore';
@@ -43,7 +44,12 @@ export class ProductService {
 
   loading = signal<boolean>(true);
 
-  getProducts = toSignal(
+  // 👉 Fuente de verdad: WritableSignal
+  private readonly _products = signal<Product[]>([]);
+
+  getProducts = this._products; // solo lectura para otros
+
+  /* getProducts = toSignal(
     (
       collectionData(this._query, { idField: 'id' }) as Observable<Product[]>
     ).pipe(
@@ -58,13 +64,25 @@ export class ProductService {
     {
       initialValue: [],
     }
-  );
+  );*/
 
   constructor() {
     console.log(this._authState.currentUser);
     if (!this._authState.currentUser?.uid) {
       throw new Error('No user logged in at service initialization.');
     }
+
+    // Escucha en tiempo real y actualiza el signal manualmente
+    collectionData(this._query, { idField: 'id' }).subscribe({
+      next: (products) => {
+        this._products.set(products as Product[]);
+        this.loading.set(false);
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
+        this.loading.set(false);
+      },
+    });
   }
 
   getProduct(id: string) {
@@ -85,5 +103,19 @@ export class ProductService {
       ...product,
       userId: this._authState.currentUser?.uid,
     });
+  }
+
+  async deleteProduct(id: string): Promise<void> {
+    const docRef = doc(this._firestore, `${PATH}/${id}`);
+    await deleteDoc(docRef);
+
+    // Actualiza la signal localmente (sin esperar recarga de Firebase)
+    /* const current = this.getProducts();
+    const updated = current.filter((p) => p.id !== id);
+    this.getProducts.set(updated); */
+
+    // Actualiza el signal local manualmente (opcional, ya que Firebase lo hará también si usas `collectionData`)
+    const current = this._products();
+    this._products.set(current.filter((p) => p.id !== id));
   }
 }
