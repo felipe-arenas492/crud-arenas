@@ -1,0 +1,13 @@
+<section class="mx-auto w-full max-w-screen-lg px-4">
+  <input #searchInput type="text" placeholder="Buscar producto"
+    class="mb-8 w-full p-2 border rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    (input)="searchText.set(searchInput.value)" />
+  @if(productService.loading()) {
+  <p>Cargando...</p>
+
+  } @else {
+
+  <app-beauty-list [searchText]="searchText()" [products]="productService.getProducts()" />
+
+  }
+</section>

@@ -14,4 +14,8 @@ export default [
     path: 'edit/:idProduct',
     loadComponent: () => import('./product-form/product-form'),
   },
+  {
+    path: 'superList',
+    loadComponent: () => import('./product-super-list/product-super-list'),
+  },
 ] as Routes;
