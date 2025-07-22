@@ -21,7 +21,6 @@
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <td class="px-6 py-4">{{ product.nombre }}</td>
         <td class="px-6 py-4">
-          <!-- {{ task.completed ? "Completado" : "No completado" }} -->
           {{ product.marca }}
         </td>
         <td class="px-6 py-4">{{ product.modelo }}</td>
@@ -30,7 +29,6 @@
         <td class="px-6 py-4">{{ product.sku }}</td>
         <td class="px-6 py-4">{{ product.descripcion }}</td>
         <td class="px-6 py-4 flex items-center gap-x-2">
-          <!-- <a [routerLink]="['/products/edit/' + product.id]">-->
           <a [routerLink]="['/products/edit', product.id]">
             <svg
               xmlns="http://www.w3.org/2000/svg"

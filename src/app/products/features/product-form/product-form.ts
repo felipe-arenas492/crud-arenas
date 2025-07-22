@@ -25,7 +25,6 @@ export default class ProductForm {
 
   loading = signal(false);
   idProduct = signal<string | null>(null);
-  //idProduct = input<string>();
 
   form = this._formBuilder.group({
     nombre: this._formBuilder.control('', Validators.required),
@@ -39,13 +38,6 @@ export default class ProductForm {
   });
 
   constructor() {
-    /*effect(() => {
-      const id = this.idProduct();
-      if (id) {
-        this.getProduct(id);
-      }
-    });*/
-
     this._route.paramMap.subscribe((params) => {
       const id = params.get('idProduct');
       if (id) {
