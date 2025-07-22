@@ -1,12 +1,10 @@
 import { Component, input, computed, signal } from '@angular/core';
 import { Product } from '../../data-access/product.service';
-// import { RouterLink } from '@angular/router';
-// import { combineLatest, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-beauty-list',
   standalone: true,
-  // imports: [RouterLink],
+
   templateUrl: './beauty-list.html',
 })
 export class BeautyListComponent {
