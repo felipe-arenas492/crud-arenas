@@ -109,12 +109,6 @@ export class ProductService {
     const docRef = doc(this._firestore, `${PATH}/${id}`);
     await deleteDoc(docRef);
 
-    // Actualiza la signal localmente (sin esperar recarga de Firebase)
-    /* const current = this.getProducts();
-    const updated = current.filter((p) => p.id !== id);
-    this.getProducts.set(updated); */
-
-    // Actualiza el signal local manualmente (opcional, ya que Firebase lo hará también si usas `collectionData`)
     const current = this._products();
     this._products.set(current.filter((p) => p.id !== id));
   }
