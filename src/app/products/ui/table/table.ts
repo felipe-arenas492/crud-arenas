@@ -11,10 +11,7 @@ import { RouterLink } from '@angular/router';
 export class TableComponent {
   private productService = inject(ProductService);
 
-  // products = input.required<Product[]>();
   searchText = input.required<string>({});
-
-  // newProducts = signal<Product[]>([]);
 
   products = this.productService.getProducts;
 
@@ -40,10 +37,6 @@ export class TableComponent {
     if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
       try {
         await this.productService.deleteProduct(id);
-
-        // Opcional: filtra los productos localmente después de borrar
-        // const updated = this.products().filter((p) => p.id !== id);
-        // this.newProducts.set(updated); // Si usas esto como fuente de verdad
       } catch (error) {
         console.error('Error al eliminar producto:', error);
         alert('No se pudo eliminar el producto.');
