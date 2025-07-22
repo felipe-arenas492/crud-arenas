@@ -9,7 +9,6 @@ import { hasEmailError, isRequired } from '../../utils/validators';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
 import { Router, RouterLink } from '@angular/router';
-// import { GoogleButtonComponent } from '../../ui/google-button/google-button';
 
 interface FormSignUp {
   email: FormControl<string | null>;
