@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './product-form.html',
-  //styleUrl: './task-form.component.scss',
+
   providers: [ProductService],
 })
 export default class ProductForm {
@@ -52,8 +52,6 @@ export default class ProductForm {
 
     this.loading.set(true);
     try {
-      // console.log('entro a abel');
-      // this.loading.set(true);
       const { nombre, marca, modelo, imagen, stock, precio, sku, descripcion } =
         this.form.value;
       const product: ProductCreate = {
